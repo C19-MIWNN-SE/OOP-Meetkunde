@@ -5,6 +5,13 @@ package nl.miwnn.ch19.vincent.meetkunde.model;
  * Houdt de eigenschappen van een cirkel bij
  */
 public class Cirkel {
+    private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
+
+    private static final int DEFAULT_STRAAL = 1;
+    private static final int DEFAULT_MIDDELPUNT_X = 0;
+    private static final int DEFAULT_MIDDELPUNT_Y = 0;
+    private static final String DEFAULT_KLEUR = "groen";
+
     private static int aantalCirkels = 0;
 
     private int volgnummer;
@@ -15,38 +22,43 @@ public class Cirkel {
 
     public Cirkel(double straal, double middelpuntX, double middelpuntY, String kleur) {
         volgnummer = ++aantalCirkels;
-        this.straal = straal;
+
+        setStraal(straal);
         this.middelpuntX = middelpuntX;
         this.middelpuntY = middelpuntY;
         this.kleur = kleur;
     }
 
     public Cirkel(double straal) {
-        volgnummer = ++aantalCirkels;
-        this.straal = straal;
-        this.middelpuntX = 0;
-        this.middelpuntY = 0;
-        this.kleur = "groen";
+        this(straal, DEFAULT_MIDDELPUNT_X, DEFAULT_MIDDELPUNT_Y, DEFAULT_KLEUR);
     }
 
     public Cirkel() {
-        volgnummer = ++aantalCirkels;
-        this.straal = 1;
-        this.middelpuntX = 0;
-        this.middelpuntY = 0;
-        this.kleur = "groen";
+        this(DEFAULT_STRAAL);
     }
 
     public static String geefDefinitie() {
         return "Een cirkel is een verzameling punten, die allemaal dezelfde afstand tot een middelpunt hebben.";
     }
 
-    public double geefOmtrek() {
+    public static double geefOmtrek(double straal) {
         return 2 * Math.PI * straal;
+    }
+
+    public double geefOmtrek() {
+        return geefOmtrek(this.straal);
     }
 
     public double geefOppervlakte() {
         return Math.PI * straal * straal;
+    }
+
+    public String vertelOverGrootte() {
+        if (geefOppervlakte() > GRENSWAARDE_GROOT_FIGUUR) {
+            return "Ik ben groot!!!";
+        } else {
+            return "Zij zijn groot en ik ben klein en dat is niet eerlijk!!!";
+        }
     }
 
     public static int getAantalCirkels() {
@@ -63,8 +75,8 @@ public class Cirkel {
 
     public void setStraal(double straal) {
         if (straal <= 0) {
-            System.err.println("De straal moet positief zijn. De straal wordt nu op 1 gezet.");
-            straal = 1; // bewust alternatief tov het boek
+            System.err.printf("De straal moet positief zijn. De straal wordt nu op %d gezet.\n", DEFAULT_STRAAL);
+            straal = DEFAULT_STRAAL; // bewust alternatief tov het boek
         }
         this.straal = straal;
     }
