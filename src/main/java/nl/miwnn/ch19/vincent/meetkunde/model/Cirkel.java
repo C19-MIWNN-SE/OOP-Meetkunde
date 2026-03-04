@@ -5,13 +5,13 @@ package nl.miwnn.ch19.vincent.meetkunde.model;
  * Houdt de eigenschappen van een cirkel bij
  */
 public class Cirkel {
-    public static int aantalCirkels = 0;
+    private static int aantalCirkels = 0;
 
-    public int volgnummer;
-    public double straal;
-    public double middelpuntX;
-    public double middelpuntY;
-    public String kleur;
+    private int volgnummer;
+    private double straal;
+    private double middelpuntX;
+    private double middelpuntY;
+    private String kleur;
 
     public Cirkel(double straal, double middelpuntX, double middelpuntY, String kleur) {
         volgnummer = ++aantalCirkels;
@@ -47,5 +47,25 @@ public class Cirkel {
 
     public double geefOppervlakte() {
         return Math.PI * straal * straal;
+    }
+
+    public static int getAantalCirkels() {
+        return aantalCirkels;
+    }
+
+    public int getVolgnummer() {
+        return volgnummer;
+    }
+
+    public double getStraal() {
+        return straal;
+    }
+
+    public void setStraal(double straal) {
+        if (straal <= 0) {
+            System.err.println("De straal moet positief zijn. De straal wordt nu op 1 gezet.");
+            straal = 1; // bewust alternatief tov het boek
+        }
+        this.straal = straal;
     }
 }
