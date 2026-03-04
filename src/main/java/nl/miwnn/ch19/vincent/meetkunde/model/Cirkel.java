@@ -65,6 +65,10 @@ public class Cirkel {
         return aantalCirkels;
     }
 
+    public static void resetAantalCirkels() {
+        aantalCirkels = 0;
+    }
+
     public int getVolgnummer() {
         return volgnummer;
     }
