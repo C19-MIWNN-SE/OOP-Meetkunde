@@ -9,28 +9,19 @@ import nl.miwnn.ch19.vincent.meetkunde.model.Cirkel;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        System.out.println(Cirkel.getAantalCirkels());
+        Cirkel[] mijnCirkelArray = new Cirkel[3];
 
-        Cirkel mijnEersteCirkel = new Cirkel(-3, 3, -2, "blauw");
+        mijnCirkelArray[0] = new Cirkel(3, 1, 4, "blauw");
+        mijnCirkelArray[1] = new Cirkel(6);
+        mijnCirkelArray[2] = new Cirkel();
 
-        Cirkel mijnTweedeCirkel = new Cirkel(6);
-        Cirkel mijnDerdeCirkel = new Cirkel();
-
-
-        System.out.println(Cirkel.geefDefinitie());
-
-        System.out.println(mijnEersteCirkel.getVolgnummer());
-        System.out.println(mijnEersteCirkel.geefOmtrek());
-        System.out.println(mijnEersteCirkel.geefOppervlakte());
-        System.out.println(mijnEersteCirkel.vertelOverGrootte());
-        System.out.println();
-
-        System.out.println(mijnTweedeCirkel.getVolgnummer());
-        System.out.println(mijnTweedeCirkel.geefOmtrek());
-        System.out.println(mijnTweedeCirkel.geefOppervlakte());
-        System.out.println(mijnTweedeCirkel.vertelOverGrootte());
-
-        System.out.println(Cirkel.getAantalCirkels());
+        for (int cirkel = 0; cirkel < mijnCirkelArray.length; cirkel++) {
+            System.out.println(mijnCirkelArray[cirkel].getVolgnummer());
+            System.out.println(mijnCirkelArray[cirkel].geefOmtrek());
+            System.out.println(mijnCirkelArray[cirkel].geefOppervlakte());
+            System.out.println(mijnCirkelArray[cirkel].vertelOverGrootte());
+            System.out.println();
+        }
     }
 
 }
