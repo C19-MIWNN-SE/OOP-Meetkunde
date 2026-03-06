@@ -2,6 +2,7 @@ package nl.miwnn.ch19.vincent.meetkunde.controller;
 
 import nl.miwnn.ch19.vincent.meetkunde.model.Cirkel;
 import nl.miwnn.ch19.vincent.meetkunde.model.Punt;
+import nl.miwnn.ch19.vincent.meetkunde.model.Rechthoek;
 
 /**
  * @author Vincent Velthuizen
@@ -17,13 +18,11 @@ public class MeetkundeLauncher {
         mijnCirkelArray[2] = new Cirkel();
 
         for (int cirkel = 0; cirkel < mijnCirkelArray.length; cirkel++) {
-            System.out.println(mijnCirkelArray[cirkel].getVolgnummer());
-            System.out.println(mijnCirkelArray[cirkel].geefOmtrek());
-            System.out.println(mijnCirkelArray[cirkel].geefOppervlakte());
-            System.out.println(mijnCirkelArray[cirkel].vertelOverGrootte());
-            System.out.println(mijnCirkelArray[cirkel].getMiddelpunt().getxCoordinaat());
+            System.out.println(mijnCirkelArray[cirkel]);
             System.out.println();
         }
+
+        System.out.println(new Rechthoek(4, 5));
     }
 
 }

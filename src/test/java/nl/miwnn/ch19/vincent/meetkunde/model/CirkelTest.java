@@ -14,7 +14,6 @@ class CirkelTest {
 
     @BeforeAll
     static void setUp() {
-        Cirkel.resetAantalCirkels();
         cirkel = new Cirkel();
         cirkel5 = new Cirkel(5);
         cirkel10 = new Cirkel(10);

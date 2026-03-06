@@ -4,29 +4,20 @@ package nl.miwnn.ch19.vincent.meetkunde.model;
  * @author Vincent Velthuizen
  * Houdt de eigenschappen van een cirkel bij
  */
-public class Cirkel {
-    private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
-
+public class Cirkel extends Figuur {
     private static final int DEFAULT_STRAAL = 1;
-    private static final String DEFAULT_KLEUR = "groen";
 
-    private static int aantalCirkels = 0;
-
-    private int volgnummer;
     private double straal;
     private Punt middelpunt;
-    private String kleur;
 
     public Cirkel(double straal, Punt middelpunt, String kleur) {
-        volgnummer = ++aantalCirkels;
-
-        setStraal(straal);
-        this.middelpunt = middelpunt;
-        this.kleur = kleur;
+        super(kleur);
+        setAttributen(straal, middelpunt);
     }
 
     public Cirkel(double straal) {
-        this(straal, new Punt(), DEFAULT_KLEUR);
+        super();
+        setAttributen(straal, new Punt());
     }
 
     public Cirkel() {
@@ -41,36 +32,30 @@ public class Cirkel {
         return 2 * Math.PI * straal;
     }
 
+    @Override
     public double geefOmtrek() {
         return geefOmtrek(this.straal);
     }
 
+    @Override
     public double geefOppervlakte() {
         return Math.PI * straal * straal;
     }
 
-    public String vertelOverGrootte() {
-        if (geefOppervlakte() > GRENSWAARDE_GROOT_FIGUUR) {
-            return "Ik ben groot!!!";
-        } else {
-            return "Zij zijn groot en ik ben klein en dat is niet eerlijk!!!";
-        }
+    @Override
+    public String toString() {
+        return String.format("""
+                %s
+                    Straal: %.2f
+                    Middelpunt: %s""",
+                super.toString().replace("figuur", "cirkel"),
+                this.straal,
+                this.middelpunt);
     }
 
-    public static int getAantalCirkels() {
-        return aantalCirkels;
-    }
-
-    public static void resetAantalCirkels() {
-        aantalCirkels = 0;
-    }
-
-    public int getVolgnummer() {
-        return volgnummer;
-    }
-
-    public double getStraal() {
-        return straal;
+    private void setAttributen(double straal, Punt middelpunt) {
+        setStraal(straal);
+        this.middelpunt = middelpunt;
     }
 
     public void setStraal(double straal) {
@@ -79,9 +64,5 @@ public class Cirkel {
             straal = DEFAULT_STRAAL; // bewust alternatief tov het boek
         }
         this.straal = straal;
-    }
-
-    public Punt getMiddelpunt() {
-        return middelpunt;
     }
 }
