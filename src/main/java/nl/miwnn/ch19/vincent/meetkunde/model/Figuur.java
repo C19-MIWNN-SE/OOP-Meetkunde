@@ -4,7 +4,7 @@ package nl.miwnn.ch19.vincent.meetkunde.model;
  * @author Vincent Velthuizen
  * Algemene eigenschappen die elk figuur heeft
  */
-public class Figuur {
+public abstract class Figuur {
     private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
 
     private static final String DEFAULT_KLEUR = "paars";
@@ -23,13 +23,8 @@ public class Figuur {
         return "Een verzameling punten.";
     }
 
-    public double geefOmtrek() {
-        return 0;
-    }
-
-    public double geefOppervlakte() {
-        return 0;
-    }
+    public abstract double geefOmtrek();
+    public abstract double geefOppervlakte();
 
     public String vertelOverGrootte() {
         if (geefOppervlakte() > GRENSWAARDE_GROOT_FIGUUR) {

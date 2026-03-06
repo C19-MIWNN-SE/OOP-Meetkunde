@@ -34,7 +34,7 @@ public class Cirkel extends Figuur {
 
     @Override
     public double geefOmtrek() {
-        return geefOmtrek(this.straal);
+        return geefOmtrek(straal);
     }
 
     @Override
