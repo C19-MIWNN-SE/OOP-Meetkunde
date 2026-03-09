@@ -1,6 +1,7 @@
 package nl.miwnn.ch19.vincent.meetkunde.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author Vincent Velthuizen
@@ -43,6 +44,8 @@ public class Oppervlak {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("Mijn oppervlak bevat:");
+
+        Collections.sort(figuren);
 
         for (Figuur figuur : figuren) {
             stringBuilder.append("\n\n").append(figuur.toString());

@@ -4,7 +4,7 @@ package nl.miwnn.ch19.vincent.meetkunde.model;
  * @author Vincent Velthuizen
  * Algemene eigenschappen die elk figuur heeft
  */
-public abstract class Figuur {
+public abstract class Figuur implements Comparable<Figuur> {
     private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
 
     private static final String DEFAULT_KLEUR = "paars";
@@ -32,6 +32,16 @@ public abstract class Figuur {
         } else {
             return "Zij zijn groot en ik ben klein en dat is niet eerlijk!!!";
         }
+    }
+
+    @Override
+    public int compareTo(Figuur andereFiguur) {
+        if (this.geefOppervlakte() < andereFiguur.geefOppervlakte()) {
+            return -1;
+        } else if (this.geefOppervlakte() > andereFiguur.geefOppervlakte()) {
+            return 1;
+        }
+        return 0;
     }
 
     @Override
