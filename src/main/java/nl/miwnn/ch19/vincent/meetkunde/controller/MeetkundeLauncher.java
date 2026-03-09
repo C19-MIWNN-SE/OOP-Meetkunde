@@ -14,8 +14,10 @@ public class MeetkundeLauncher {
         Oppervlak oppervlak = new Oppervlak(20, 30);
         Cirkel cirkel = new Cirkel();
         oppervlak.voegFiguurToe(cirkel);
-        oppervlak.voegFiguurToe(new Cirkel(7));
+        oppervlak.voegFiguurToe(new Cirkel(11));
         oppervlak.voegFiguurToe(new Rechthoek());
+        oppervlak.voegFiguurToe(new Rechthoek(30, 20));
+        oppervlak.voegFiguurToe(new Cirkel(3));
 
         System.out.println(oppervlak);
     }
