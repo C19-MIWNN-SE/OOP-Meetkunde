@@ -5,6 +5,8 @@ import nl.miwnn.ch19.vincent.meetkunde.model.Figuur;
 import nl.miwnn.ch19.vincent.meetkunde.model.Punt;
 import nl.miwnn.ch19.vincent.meetkunde.model.Rechthoek;
 
+import java.util.ArrayList;
+
 /**
  * @author Vincent Velthuizen
  * speelt met meetkundige objecten
@@ -12,20 +14,23 @@ import nl.miwnn.ch19.vincent.meetkunde.model.Rechthoek;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        Figuur[] figuren = new Figuur[3];
+        ArrayList<Figuur> mijnFiguren = new ArrayList<>();
 
-        figuren[0] = new Cirkel(3, new Punt(1, 4), "blauw");
-        figuren[1] = new Cirkel(7);
-        figuren[2] = new Rechthoek();
+        mijnFiguren.add(new Cirkel(3, new Punt(1, 4), "blauw"));
+        mijnFiguren.add(new Cirkel(7));
+        mijnFiguren.add(0, new Rechthoek());
 
+        mijnFiguren.remove(1);
 
-
-        for (int figuur = 0; figuur < figuren.length; figuur++) {
-            System.out.println(figuren[figuur]);
-            toonInformatie(figuren[figuur]);
+        for (Figuur value : mijnFiguren) {
+            System.out.println(value);
+            toonInformatie(value);
         }
 
-        System.out.println(new Rechthoek(4, 5));
+        for (Figuur figuurUitDeLijst : mijnFiguren) {
+            System.out.println(figuurUitDeLijst);
+            toonInformatie(figuurUitDeLijst);
+        }
     }
 
     public static void toonInformatie(Figuur figuur) {
