@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,5 +59,19 @@ class CirkelTest {
         double daadwerkelijkeOppervlak = cirkel.geefOppervlakte();
 
         assertEquals(verwachteOppervlak, daadwerkelijkeOppervlak, 0.01);
+    }
+
+    @ParameterizedTest(name = "straal: {0}")
+    @ValueSource(doubles = {-1, 0, -1 * Math.PI})
+    @DisplayName("maken van een Cirkel met een niet positieve straal levert Exception op")
+    void makenVanEenCirkelMetEenNietPositieveStraalLevertExceptionOp(double straal) {
+        assertThrows(IllegalArgumentException.class, () -> new Cirkel(straal));
+    }
+
+    @ParameterizedTest(name = "straal: {0}")
+    @ValueSource(doubles = {0.1, 1, Math.PI})
+    @DisplayName("Het maken van een Cirkel met een geldige straal lukt wel")
+    void hetMakenVanEenCirkelMetEenGeldigeStraalLuktWel(double straal) {
+        new Cirkel(straal);
     }
 }

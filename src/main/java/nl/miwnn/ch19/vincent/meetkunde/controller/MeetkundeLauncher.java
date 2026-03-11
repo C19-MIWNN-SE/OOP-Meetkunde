@@ -3,6 +3,8 @@ package nl.miwnn.ch19.vincent.meetkunde.controller;
 import nl.miwnn.ch19.vincent.meetkunde.model.*;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * @author Vincent Velthuizen
@@ -11,15 +13,28 @@ import java.util.ArrayList;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        Oppervlak oppervlak = new Oppervlak(20, 30);
-        Cirkel cirkel = new Cirkel();
-        oppervlak.voegFiguurToe(cirkel);
-        oppervlak.voegFiguurToe(new Cirkel(11));
-        oppervlak.voegFiguurToe(new Rechthoek());
-        oppervlak.voegFiguurToe(new Rechthoek(30, 20));
-        oppervlak.voegFiguurToe(new Cirkel(3));
+        Scanner toetsenbord = new Scanner(System.in);
 
-        System.out.println(oppervlak);
+        Cirkel cirkel = null;
+
+        while (cirkel == null) {
+            System.out.print("Geef een straal: ");
+
+            try {
+                double straal = toetsenbord.nextDouble();
+                cirkel = new Cirkel(straal);
+                toetsenbord.close();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
+            } catch (InputMismatchException inputMismatchException) {
+                System.out.println("Sorry dat herken ik niet als een komma-getal, probeer het nog een keer.");
+                toetsenbord.nextLine();
+            } finally {
+                System.out.println("De invoer, goed of niet, is nu helemaal verwerkt.");
+            }
+        }
+
+        System.out.println(cirkel);
     }
 
 }
