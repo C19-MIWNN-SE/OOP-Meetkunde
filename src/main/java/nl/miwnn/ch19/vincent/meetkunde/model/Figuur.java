@@ -4,7 +4,7 @@ package nl.miwnn.ch19.vincent.meetkunde.model;
  * @author Vincent Velthuizen
  * Algemene eigenschappen die elk figuur heeft
  */
-public abstract class Figuur implements Comparable<Figuur> {
+public abstract class Figuur implements Comparable<Figuur>, ToelaatbaarInOppervlak {
     private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
 
     private static final String DEFAULT_KLEUR = "paars";

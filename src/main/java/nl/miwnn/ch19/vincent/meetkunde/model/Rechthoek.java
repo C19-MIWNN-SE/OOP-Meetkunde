@@ -42,6 +42,11 @@ public class Rechthoek extends Figuur {
     }
 
     @Override
+    public boolean pastInOppervlak(double lengte, double breedte) {
+        return this.lengte <= lengte && this.breedte <= breedte;
+    }
+
+    @Override
     public String toString() {
         return String.format("""
                 %s
@@ -58,13 +63,5 @@ public class Rechthoek extends Figuur {
         this.lengte = lengte;
         this.breedte = breedte;
         this.hoekpuntLinksboven = hoekpuntLinksboven;
-    }
-
-    public double getLengte() {
-        return lengte;
-    }
-
-    public double getBreedte() {
-        return breedte;
     }
 }
