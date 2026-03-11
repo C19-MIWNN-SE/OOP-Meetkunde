@@ -2,8 +2,9 @@ package nl.miwnn.ch19.vincent.meetkunde.controller;
 
 import nl.miwnn.ch19.vincent.meetkunde.model.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -13,28 +14,25 @@ import java.util.Scanner;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        Scanner toetsenbord = new Scanner(System.in);
+        ArrayList<Cirkel> cirkels = new ArrayList<>();
+        File stralenBestand = new File("src/main/resources/stralen.txt");
 
-        Cirkel cirkel = null;
+        try {
+            Scanner bestandslezer = new Scanner(stralenBestand);
 
-        while (cirkel == null) {
-            System.out.print("Geef een straal: ");
-
-            try {
-                double straal = toetsenbord.nextDouble();
-                cirkel = new Cirkel(straal);
-                toetsenbord.close();
-            } catch (IllegalArgumentException illegalArgumentException) {
-                System.out.println(illegalArgumentException.getMessage());
-            } catch (InputMismatchException inputMismatchException) {
-                System.out.println("Sorry dat herken ik niet als een komma-getal, probeer het nog een keer.");
-                toetsenbord.nextLine();
-            } finally {
-                System.out.println("De invoer, goed of niet, is nu helemaal verwerkt.");
+            while (bestandslezer.hasNextDouble()) {
+                cirkels.add(new Cirkel(bestandslezer.nextDouble()));
             }
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.err.println("Het stralenbestand kon niet geopend worden.");
+            System.err.println(fileNotFoundException.getMessage());
         }
 
-        System.out.println(cirkel);
+        for (Cirkel cirkel : cirkels) {
+            System.out.println(cirkel);
+            System.out.println();
+        }
+
     }
 
 }
