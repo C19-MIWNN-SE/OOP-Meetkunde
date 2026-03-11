@@ -4,6 +4,7 @@ import nl.miwnn.ch19.vincent.meetkunde.model.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,11 +16,8 @@ public class MeetkundeLauncher {
 
     public static void main(String[] args) {
         ArrayList<Figuur> figuren = new ArrayList<>();
-        File stralenBestand = new File("src/main/resources/Rechthoeken.csv");
 
-        try {
-            Scanner bestandslezer = new Scanner(stralenBestand);
-
+        try (Scanner bestandslezer = new Scanner(new File("src/main/resources/Rechthoeken.csv"))) {
             while (bestandslezer.hasNextLine()) {
                 String[] rechthoekEigenschappen = bestandslezer.nextLine().split(",");
 
@@ -32,14 +30,20 @@ public class MeetkundeLauncher {
                 figuren.add(new Rechthoek(lengte, breedte, new Punt(xCoordinaat, yCoordinaat), kleur));
             }
         } catch (FileNotFoundException fileNotFoundException) {
-            System.err.println("Het stralenbestand kon niet geopend worden.");
+            System.err.println("De Rechthoeken CSV kon niet geopend worden.");
             System.err.println(fileNotFoundException.getMessage());
         }
 
-        for (Figuur figuur : figuren) {
-            System.out.println(figuur);
-            System.out.println();
+        try (PrintWriter writer = new PrintWriter("src/main/resources/Rechthoeken.txt")) {
+            for (Figuur figuur : figuren) {
+                writer.println(figuur);
+                writer.println();
+            }
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.err.println("Het Rechthoeken tekst bestand kon niet worden gemaakt/geopened.");
+            System.err.println(fileNotFoundException.getMessage());
         }
+
 
     }
 
